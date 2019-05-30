@@ -71,7 +71,7 @@ Node_t *newNode(const char *value, Node_t *next)
     if((temp=malloc(sizeof(Node_t)))== NULL){
       return NULL;
     }
-    temp->value=strdup(*value);
+    temp->value=strdup(value);
     temp->next=next;
     return temp;
 }
