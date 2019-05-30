@@ -87,9 +87,11 @@ Node_t *deleteNode(Node_t *current, char **value)
     if (p==NULL){
       return NULL;
     }
-    if (p->value==**value){
+    if ((p->value)==*value){
       p = p -> next;
       free (current);
+      return p;
+    }else{
       return p;
     }
 
@@ -103,7 +105,7 @@ Node_t *deleteNode(Node_t *current, char **value)
  */
 bool pop(Node_t **Stack, char **value)
 {
-    Node_t *temp = deleteNode(value,Stack);
+    Node_t *temp = deleteNode(*Stack,value);
     if (temp!=NULL){
       (*Stack)--;
       *value=temp->value;
@@ -118,7 +120,7 @@ bool pop(Node_t **Stack, char **value)
 /**
  * Push the string to the top of the stack using newNode
  * update the top of the stack
- * return true if everything is successfull
+ * return true if everything is successfull!
  */
 bool push(Node_t **Stack, const char *value)
 {
