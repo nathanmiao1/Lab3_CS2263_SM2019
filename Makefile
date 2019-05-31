@@ -7,7 +7,7 @@ Stack.o: Stack.c
 	$(COMPILER) $(C_FLAGS) -c Stack.c
 # TODO: add a target for each .input file in the Data directory to run the compiled LinkedList program with the tests in ./Data
 test: test1 test2 test3
-# TODO: add a target that can run all the tests above.
+# TODO: add a target that can run all the tests above!
 test1: Stack
 	./Stack < Data/test1.input > test1.result
 	./TestPassed.sh test1.result Data/test1.expected
