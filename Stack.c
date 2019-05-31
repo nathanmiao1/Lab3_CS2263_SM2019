@@ -33,7 +33,6 @@ int main(void)
     // initialize our things
     Node_t *Stack = NULL;
     char buffer[BUFFER_SIZE] = { 0 };
-
     // fill our stack from the user input
     while(1 == scanf("%s", buffer))
     {
@@ -67,12 +66,12 @@ int main(void)
  */
 Node_t *newNode(const char *value, Node_t *next)
 {
-    Node_t *temp=NULL;
-    if((temp=malloc(sizeof(Node_t)))== NULL){
+    Node_t *temp=malloc(sizeof(Node_t));
+    if(temp == NULL){
       return NULL;
     }
-    temp->value=strdup(value);
-    temp->next=next;
+    temp -> value = strdup(value);
+    temp -> next = next;
     return temp;
 }
 
@@ -83,18 +82,10 @@ Node_t *newNode(const char *value, Node_t *next)
  */
 Node_t *deleteNode(Node_t *current, char **value)
 {
-  Node_t *p = current;
-    if (p==NULL){
-      return NULL;
-    }
-    if ((p->value)==*value){
-      p = p -> next;
+  Node_t *p = current -> next;
+      *(value) = current -> value;
       free (current);
       return p;
-    }else{
-      return p;
-    }
-
 }
 
 /**
@@ -104,17 +95,13 @@ Node_t *deleteNode(Node_t *current, char **value)
  * return true on success
  */
 bool pop(Node_t **Stack, char **value)
-{
-    Node_t *temp = deleteNode(*Stack,value);
-    if (temp!=NULL){
-      (*Stack)--;
-      *value=temp->value;
-      return true;
+{  
+    if (*Stack!=NULL){
+        *Stack = deleteNode(*Stack,value);
+        return true;
     }else{
-      return false;
+        return false;
     }
-
-
 }
 
 /**
@@ -124,13 +111,11 @@ bool pop(Node_t **Stack, char **value)
  */
 bool push(Node_t **Stack, const char *value)
 {
-
-    if (newNode(value,*Stack)!=NULL){
-      Stack++;
-      return true;
+    Node_t *p1 = newNode(value, *Stack);
+    if (p1 != NULL){
+        *Stack = p1;
+        return true;
     }else{
-      return false;
+        return false;
     }
-
-
 }
